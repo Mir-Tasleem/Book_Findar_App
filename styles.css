@@ -1,0 +1,151 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #f4f4f9;
+  color: #333;
+}
+header {
+  text-align: center;
+  padding: 20px;
+  background: #4caf50;
+  color: white;
+}
+.head {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+header h1 {
+  margin: 0;
+}
+header input {
+  width: 50%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+header #search-type {
+  width: 15%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+header button {
+  padding: 10px 20px;
+  background: #333;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+header button:hover {
+  background: #555;
+}
+main {
+  padding: 20px;
+}
+.book {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  background: white;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.book img {
+  width: 100px;
+  height: auto;
+  margin-right: 20px;
+}
+.book h3 {
+  margin: 0;
+}
+footer {
+  text-align: center;
+  padding: 10px;
+  background: #333;
+  color: white;
+}
+#pagination {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+#pagination button {
+  padding: 10px 20px;
+  background: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+#pagination button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+#pagination button:hover:not(:disabled) {
+  background: #333;
+} /* Style for the result cards
+  */
+.book {
+  position: relative;
+  margin: 10px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+} /* Hover effect */
+.book:hover {
+  transform: scale(1.05); /* Slightly enlarge the card */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Add a stronger shadow */
+} /* Style for the book image */
+.book img {
+  width: 80px;
+  height: 120px;
+  margin-right: 20px;
+  border-radius: 4px;
+  object-fit: cover;
+} /* Style for the text in the result card */
+.book div {
+  flex: 1;
+} /* Book title */
+.book h3 {
+  font-size: 18px;
+  margin: 0 0 10px;
+  font-weight: bold;
+} /* Author text */
+.book p {
+  margin: 5px 0;
+  color: #555;
+}
+/* Read more link */
+.book a {
+  text-decoration: none;
+  color: #1679ab;
+  font-weight: bold;
+}
+.book a:hover {
+  color: #074173;
+}
+@media only screen and (max-width: 600px) {
+  header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  header #search-type {
+    width: 40%;
+  }
+}
