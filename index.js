@@ -4,6 +4,7 @@ const searchType = document.getElementById("search-type");
 const results = document.getElementById("results");
 const prevBtn = document.getElementById("prev-btn");
 const nextBtn = document.getElementById("next-btn");
+const themeToggle = document.getElementById("theme-toggle");
 
 // Google Books API base URL
 const API_URL = "https://www.googleapis.com/books/v1/volumes?q=";
@@ -12,20 +13,28 @@ let currentType = "title";
 let currentPage = 0; // Track the current page
 const RESULTS_PER_PAGE = 10; // Google Books API returns a max of 10 results per request
 
+// Toggle dark mode
+themeToggle.addEventListener("click", () => {
+  document.body.classList.toggle("dark-theme");
+  // Change the icon of the toggle button
+  if (document.body.classList.contains("dark-theme")) {
+    themeToggle.textContent = "🌞"; // Light mode icon
+  } else {
+    themeToggle.textContent = "🌙"; // Dark mode icon
+  }
+});
+
 // Event listeners
-// Handle search on button click
 searchBtn.addEventListener("click", () => {
   performSearch();
 });
 
-// Handle search when pressing Enter key
 searchInput.addEventListener("keydown", (event) => {
   if (event.key === "Enter") {
     performSearch();
   }
 });
 
-// Common search logic
 function performSearch() {
   const query = searchInput.value.trim();
   const type = searchType.value;
@@ -52,10 +61,8 @@ nextBtn.addEventListener("click", () => {
   searchBooks(currentQuery, currentType, currentPage);
 });
 
-// Fetch books
 async function searchBooks(query, type, page) {
   results.innerHTML = "<p>Loading...</p>";
-  togglePaginationButtons(false); // Disable pagination buttons during loading
 
   try {
     const startIndex = page * RESULTS_PER_PAGE;
@@ -64,9 +71,7 @@ async function searchBooks(query, type, page) {
       `${API_URL}${searchQuery}&startIndex=${startIndex}&maxResults=${RESULTS_PER_PAGE}`
     );
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
+    if (!response.ok) throw new Error("HTTP error! Status: " + response.status);
 
     const data = await response.json();
     displayResults(data.items);
@@ -78,7 +83,7 @@ async function searchBooks(query, type, page) {
 }
 
 function displayResults(books) {
-  results.innerHTML = ""; // Clear previous results
+  results.innerHTML = "";
   if (!books || books.length === 0) {
     results.innerHTML = "<p>No results found</p>";
     return;
@@ -92,18 +97,13 @@ function displayResults(books) {
     const thumbnail =
       bookInfo.imageLinks?.thumbnail ||
       "https://via.placeholder.com/100x150?text=No+Image";
+
     bookElement.innerHTML = `
-      <img src="${thumbnail}" alt="${bookInfo.title}">
-      <div>
+      <img src="${thumbnail}" alt="${bookInfo.title}" />
+      <div class="book-details">
         <h3>${bookInfo.title}</h3>
-        <p><strong>Author:</strong> ${
-          bookInfo.authors?.join(", ") || "Unknown"
-        }</p>
-        <p><strong>Published:</strong> ${bookInfo.publishedDate || "N/A"}</p>
-        <p>${
-          bookInfo.description?.substring(0, 200) || "No description available"
-        }...</p>
-        <a href="${bookInfo.infoLink}" target="_blank">Read More</a>
+        <p>by ${bookInfo.authors?.join(", ") || "Unknown"}</p>
+        <p>${bookInfo.description || "No description available."}</p>
       </div>
     `;
 
@@ -111,15 +111,10 @@ function displayResults(books) {
   });
 }
 
-function updatePaginationButtons(totalItems, page) {
+function updatePaginationButtons(totalItems, currentPage) {
   const totalPages = Math.ceil(totalItems / RESULTS_PER_PAGE);
 
-  // Enable or disable buttons based on the current page and total items
-  prevBtn.disabled = page <= 0;
-  nextBtn.disabled = (page + 1) * RESULTS_PER_PAGE >= totalItems;
-}
-
-function togglePaginationButtons(enable) {
-  prevBtn.disabled = !enable;
-  nextBtn.disabled = !enable;
+  // Enable or disable buttons based on the current page and total pages
+  prevBtn.disabled = currentPage === 0;
+  nextBtn.disabled = currentPage >= totalPages - 1;
 }

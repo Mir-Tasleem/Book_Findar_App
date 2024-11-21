@@ -30,7 +30,7 @@
       <input
         type="text"
         id="search-input"
-        placeholder="Enter your search term..."
+        placeholder="Enter title or author of book"
       />
       <select id="search-type">
         <option value="title">Search by Title</option>
@@ -38,11 +38,17 @@
       </select>
       <button id="search-btn"><i class="fas fa-search fa-spin"></i></button>
     </header>
-    <main id="results"></main>
+    <main id="results">
+      <div class="quote">
+        <p>A book is a garden, an orchard, a storehouse, a party, a company by the way, a counselor, a multitude of counselors.</p>
+        <h4>-Charles Baudelaire</h4>
+      </div>
+    </main>
     <div id="pagination">
       <button id="prev-btn" disabled>Previous</button>
       <button id="next-btn" disabled>Next</button>
     </div>
+    <button id="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
     <footer>
       <p>Developed by Mir Tasleem</p>
     </footer>

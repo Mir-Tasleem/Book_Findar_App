@@ -1,3 +1,4 @@
+/* Default (Light) Theme */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -6,22 +7,21 @@ body {
   background-color: #f4f4f9;
   color: #333;
 }
+
 header {
   text-align: center;
   padding: 20px;
-  background: #4caf50;
+  background: #4e7e7b;
   color: white;
 }
-.head {
+
+header .head {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
   gap: 10px;
+  align-items: center;
+  justify-content: center;
 }
-header h1 {
-  margin: 0;
-}
+
 header input {
   width: 50%;
   padding: 10px;
@@ -29,6 +29,7 @@ header input {
   border-radius: 5px;
   border: 1px solid #ccc;
 }
+
 header #search-type {
   width: 15%;
   padding: 10px;
@@ -36,6 +37,7 @@ header #search-type {
   border-radius: 5px;
   border: 1px solid #ccc;
 }
+
 header button {
   padding: 10px 20px;
   background: #333;
@@ -44,41 +46,47 @@ header button {
   border-radius: 5px;
   cursor: pointer;
 }
+
 header button:hover {
   background: #555;
 }
+
 main {
   padding: 20px;
+  min-height: 35vh;
 }
+
 .book {
   display: flex;
   align-items: flex-start;
   margin-bottom: 20px;
+  margin-left: 20px;
   background: white;
   padding: 10px;
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  gap: 10px;
 }
-.book img {
-  width: 100px;
-  height: auto;
-  margin-right: 20px;
+
+.book:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2);
 }
-.book h3 {
-  margin: 0;
-}
+
 footer {
   text-align: center;
   padding: 10px;
   background: #333;
   color: white;
 }
+
 #pagination {
   display: flex;
   justify-content: center;
   gap: 10px;
   margin: 20px 0;
 }
+
 #pagination button {
   padding: 10px 20px;
   background: #4caf50;
@@ -87,58 +95,88 @@ footer {
   border-radius: 5px;
   cursor: pointer;
 }
+
 #pagination button:disabled {
   background: #ccc;
   cursor: not-allowed;
 }
+
 #pagination button:hover:not(:disabled) {
   background: #333;
-} /* Style for the result cards
-  */
-.book {
-  position: relative;
-  margin: 10px;
-  padding: 15px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+}
+
+/* Dark Theme Styles */
+body.dark-theme {
+  background-color: #121212;
+  color: #fff;
+}
+
+body.dark-theme header {
+  background-color: #333;
+}
+
+body.dark-theme header input,
+body.dark-theme header #search-type {
+  background-color: #222;
+  border: 1px solid #444;
+  color: #fff;
+}
+
+body.dark-theme header button {
+  background-color: #444;
+  color: #fff;
+}
+
+body.dark-theme header button:hover {
+  background-color: #555;
+}
+
+body.dark-theme .book {
+  background-color: #1e1e1e;
+  border: 1px solid #444;
+}
+
+body.dark-theme .book h3,
+body.dark-theme .book p {
+  color: #fff;
+}
+
+body.dark-theme footer {
+  background-color: #333;
+}
+
+body.dark-theme #pagination button {
+  background-color: #444;
+  color: #fff;
+}
+
+body.dark-theme #pagination button:disabled {
+  background-color: #555;
+}
+
+body.dark-theme #pagination button:hover:not(:disabled) {
+  background-color: #555;
+}
+
+/* Book Image hover effects in dark theme */
+body.dark-theme .book:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2);
+}
+
+#theme-toggle {
+  position: fixed;
+  right: 20px;
+  bottom: 40px;
+}
+
+.quote {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-} /* Hover effect */
-.book:hover {
-  transform: scale(1.05); /* Slightly enlarge the card */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Add a stronger shadow */
-} /* Style for the book image */
-.book img {
-  width: 80px;
-  height: 120px;
-  margin-right: 20px;
-  border-radius: 4px;
-  object-fit: cover;
-} /* Style for the text in the result card */
-.book div {
-  flex: 1;
-} /* Book title */
-.book h3 {
-  font-size: 18px;
-  margin: 0 0 10px;
-  font-weight: bold;
-} /* Author text */
-.book p {
-  margin: 5px 0;
-  color: #555;
 }
-/* Read more link */
-.book a {
-  text-decoration: none;
-  color: #1679ab;
-  font-weight: bold;
-}
-.book a:hover {
-  color: #074173;
-}
+
 @media only screen and (max-width: 600px) {
   header {
     display: flex;
